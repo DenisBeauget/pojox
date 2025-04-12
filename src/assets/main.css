@@ -1,0 +1,19 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Arima';
+  src: url('@/assets/fonts/Arima.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@theme {
+  --color-pojox-green: #2ea66e;
+  --color-pojox-beige: #f0ead6;
+  --color-pojox-dark: #1a1a1a;
+  --color-pojox-bg-start: #677d68;
+  --color-pojox-bg-middle: #e3d5b5;
+  --color-pojox-bg-end: #2ea66e;
+  --font-display: 'Arima', serif;
+  --font-sans: 'Inter', sans-serif;
+}
