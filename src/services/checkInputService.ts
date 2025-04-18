@@ -8,7 +8,6 @@ export const analyze = (inputText: Ref<string>, error: Ref<string>, isSchema: Re
         typeof parsed === "object" &&
         parsed.hasOwnProperty("$schema") &&
         parsed.hasOwnProperty("type");
-        console.log(isSchema)
     } catch (e) {
       if (e instanceof SyntaxError) {
         const match = e.message.match(/at position (\d+)/);

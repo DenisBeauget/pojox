@@ -15,7 +15,10 @@
         directly convert your JSON object or JSON schema into the language of
         your choice in a matter of seconds.
       </p>
-      <ClassicButton text="Start convert" />
+      <ClassicButton
+        class="hover:bg-pojox-green/80 hover:shadow-pojox-bg-start"
+        text="Start convert"
+      />
     </div>
     <div class="w-1/3 ml-2 p-4">
       <img src="@/assets/hero.svg" alt="" />
