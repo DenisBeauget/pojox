@@ -5,7 +5,7 @@
     <img
       class="w-1/2 mx-auto h-48 object-cover p-3"
       :src="getImageUrl()"
-      alt="Card image"
+      alt="Pojox icone"
     />
     <div class="p-4 text-center">
       <p class="text-lg font-semibold text-gray-800">{{ text }}</p>

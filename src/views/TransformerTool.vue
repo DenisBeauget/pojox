@@ -1,5 +1,8 @@
 <template>
-  <div class="flex flex-col md:flex-row gap-6 w-full p-6 font-display">
+  <div
+    id="transformer-tool"
+    class="flex flex-col md:flex-row gap-6 w-full p-6 font-display"
+  >
     <div
       class="flex-1 bg-white/70 rounded-2xl shadow-lg p-6 border border-pojox-green flex flex-col"
     >
@@ -7,12 +10,12 @@
         class="block mb-2 text-pojox-dark text-xl font-semibold"
         id="input-label"
       >
-        Entrée JSON / Schéma
+        Enter JSON / Schema:
       </h2>
       <Codemirror
         v-model="inputText"
         placeholder="Paste your JSON or JSON Schema here..."
-        :style="{ height: '300px' }"
+        :style="{ height: '350px' }"
         :autofocus="true"
         :indent-with-tab="true"
         :tab-size="2"
@@ -30,7 +33,7 @@
       <div class="flex flex-col gap-2 mt-4">
         <div class="flex gap-2 justify-evenly items-center">
           <ClassicButton
-            :disabled="!!error"
+            :disabled="!!error || inputText == ''"
             class="bg-pojox-green hover:bg-pojox-green/80 hover:shadow-pojox-bg-start text-white font-semibold py-2 px-4 rounded-xl shadow disabled:bg-pojox-green/30"
             text="Convert"
             @click="convert"
@@ -106,7 +109,7 @@
         class="block mb-2 text-pojox-dark text-xl font-semibold"
         id="output-label"
       >
-        Résultat
+        Result:
       </h2>
       <Codemirror
         id="output-text"
@@ -114,7 +117,7 @@
         :modelValue="outputText"
         :autofocus="true"
         :indent-with-tab="true"
-        :style="{ height: '300px' }"
+        :style="{ height: '350px' }"
         :tab-size="2"
         :extensions="cmExtensionsOutput"
         :theme="cmTheme"
@@ -123,23 +126,16 @@
         role="textbox"
         aria-multiline="true"
       />
-      <div
+      <ClassicButton
         v-if="outputText != ''"
-        class="absolute top-2 right-2 z-10 cursor-pointer"
-        aria-label="copy result"
-        @click="copyToClipboard()"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          width="24"
-          height="24"
-          fill="currentColor"
-        >
-          <path
-            d="M16 1H4C2.9 1 2 1.9 2 3v14h2V3h12V1zm3 4H7C5.9 5 5 5.9 5 7v14c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H7V7h12v14z"
-          />
-        </svg>
+        class="bg-pojox-green hover:bg-pojox-green/80 hover:shadow-pojox-bg-start text-white font-semibold py-2 px-4 rounded-xl shadow disabled:bg-pojox-green/30"
+        text="Copy"
+        @click="copyToClipboard"
+        role="button"
+        :aria-disabled="outputText == '' ? 'true' : 'false'"
+      />
+      <div v-if="copied != false">
+        <p class="text-center pt-4">The text has been copied to clipboard!</p>
       </div>
     </div>
   </div>
@@ -169,6 +165,8 @@ const error = ref("");
 const lang = ref(javascript());
 const cmTheme = oneDark;
 const useLombok = ref(false);
+const copied = ref(false);
+
 let cmExtensionsOutput = [
   json(),
   EditorView.lineWrapping,
@@ -220,6 +218,10 @@ const targetLanguages = [
   { value: "rust", label: "Rust" },
   { value: "go", label: "Go" },
   { value: "java", label: "Java" },
+  { value: "dart", label: "Dart" },
+  { value: "kotlin", label: "Kotlin" },
+  { value: "python", label: "Python" },
+  { value: "schema", label: "JSON Schema" },
 ];
 
 const convert = async () => {
@@ -236,6 +238,10 @@ const copyToClipboard = () => {
   const outputTextElement = document.getElementById("output-text");
   if (outputTextElement) {
     navigator.clipboard.writeText(outputText.value);
+    copied.value = true;
+    setTimeout(() => {
+      copied.value = false;
+    }, 1000);
   } else {
     console.error("error");
   }

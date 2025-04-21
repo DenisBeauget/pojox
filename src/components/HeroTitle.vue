@@ -18,6 +18,7 @@
       <ClassicButton
         class="hover:bg-pojox-green/80 hover:shadow-pojox-bg-start"
         text="Start convert"
+        @click="scrollToConverter"
       />
     </div>
     <div class="w-1/3 ml-2 p-4">
@@ -29,14 +30,20 @@
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
 import ClassicButton from "@/components/ClassicButton.vue";
+import { useRouter } from "vue-router";
 
 const titles: string[] = ["Java", "Typescript", "Go", "Rust"];
 const currentIndex = ref(0);
 const currentTitle = ref(titles[currentIndex.value]);
+const router = useRouter();
 
 const changeTitle = () => {
   currentIndex.value = (currentIndex.value + 1) % titles.length;
   currentTitle.value = titles[currentIndex.value];
+};
+
+const scrollToConverter = () => {
+  router.push("/#transformer-tool");
 };
 
 onMounted(() => {
