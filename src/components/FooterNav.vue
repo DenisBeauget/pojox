@@ -23,7 +23,7 @@
           <li>
             <a
               class="w-8 h-8 flex justify-center items-center transition transform hover:scale-110 cursor-pointer"
-              href="www.linkedin.com/in/denis-beauget-269ab2190"
+              href="https://www.linkedin.com/in/denis-beauget-269ab2190"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Link to my LinkedIn profile"

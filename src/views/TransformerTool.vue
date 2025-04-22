@@ -187,6 +187,7 @@ function setCmExtensionsOutput() {
   if (error.value) {
     return [];
   }
+
   switch (selectedTarget.value) {
     case "javascript":
     case "typescript":
@@ -201,10 +202,12 @@ function setCmExtensionsOutput() {
     case "go":
       lang.value = go();
       break;
+    default:
+      lang.value = javascript();
+      break;
   }
 
-  console.log(lang.value);
-
+  // @ts-expect-error even with default value
   return [
     lang.value,
     EditorView.lineWrapping,
