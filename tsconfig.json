@@ -14,6 +14,9 @@
   
     "compilerOptions": {
       "moduleResolution": "node",
+      "strict": false,
+      "noImplicitAny": false,
+      "strictFunctionTypes": false,
     
   }
 }

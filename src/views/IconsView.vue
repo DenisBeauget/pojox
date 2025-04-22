@@ -6,7 +6,7 @@
     />
     <IconCard
       link="../assets/icon2.svg"
-      text="You dont neet to wait to have your result, Pojox convert element instantly and give your result instantly"
+      text="You dont neet to wait to have your result, Pojox convert element instantly and give you your result in language of your choice."
     />
     <IconCard
       link="../assets/icon3.svg"
@@ -16,5 +16,5 @@
 </template>
 
 <script lang="ts" setup>
-import IconCard from '@/components/IconCard.vue'
+import IconCard from "@/components/IconCard.vue";
 </script>

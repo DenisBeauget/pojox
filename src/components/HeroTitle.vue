@@ -32,7 +32,17 @@ import { onMounted, ref } from "vue";
 import ClassicButton from "@/components/ClassicButton.vue";
 import { useRouter } from "vue-router";
 
-const titles: string[] = ["Java", "Typescript", "Go", "Rust"];
+const titles: string[] = [
+  "Java",
+  "Typescript",
+  "Go",
+  "Rust",
+  "Javascript",
+  "Dart",
+  "Kotlin",
+  "Python",
+  "JSON Schema",
+];
 const currentIndex = ref(0);
 const currentTitle = ref(titles[currentIndex.value]);
 const router = useRouter();

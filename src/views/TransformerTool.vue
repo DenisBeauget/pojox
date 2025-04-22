@@ -41,6 +41,15 @@
             :aria-disabled="!!error ? 'true' : 'false'"
           />
 
+          <ClassicButton
+            v-if="inputText != ''"
+            class="bg-pojox-green hover:bg-pojox-green/80 hover:shadow-pojox-bg-start text-white font-semibold py-2 px-4 rounded-xl shadow disabled:bg-pojox-green/30"
+            text="Reset"
+            @click="reset"
+            role="button"
+            :aria-disabled="!!error ? 'true' : 'false'"
+          />
+
           <div class="flex items-center gap-2">
             <label
               for="selected-language"
@@ -232,6 +241,11 @@ const convert = async () => {
     useLombok.value
   );
   outputText.value = result;
+};
+
+const reset = () => {
+  inputText.value = "";
+  error.value = "";
 };
 
 const copyToClipboard = () => {
