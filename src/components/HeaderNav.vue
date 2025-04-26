@@ -11,7 +11,7 @@
         />
       </div>
 
-      <div class="flex p-2 font-display text-white mr-4">
+      <div class="flex p-2 font-classic text-white mr-4">
         <ul class="flex items-center justify-center gap-6">
           <li>
             <RouterLink
@@ -31,7 +31,7 @@
           </li>
           <li>
             <RouterLink
-              to="/#footer-section"
+              to="/about"
               class="px-5 py-1 rounded-lg bg-pojox-green/80 text-white transition duration-200 ease-in-out hover:bg-pojox-green/90 hover:scale-105"
             >
               About

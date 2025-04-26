@@ -1,6 +1,6 @@
 <template>
   <button
-    class="mt-4 px-4 py-2 bg-pojox-green text-white font-display font-semibold rounded-xl shadow cursor-pointer text-center"
+    class="mt-4 px-4 py-2 bg-pojox-green text-white font-classic font-semibold rounded-xl shadow cursor-pointer text-center"
   >
     {{ text }}
   </button>
@@ -9,5 +9,5 @@
 <script lang="ts" setup>
 defineProps({
   text: String,
-})
+});
 </script>

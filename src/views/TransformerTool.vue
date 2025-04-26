@@ -1,7 +1,7 @@
 <template>
   <div
     id="transformer-tool"
-    class="flex flex-col md:flex-row gap-6 w-full p-6 font-display"
+    class="flex flex-col md:flex-row gap-6 w-full p-6 font-classic"
   >
     <div
       class="flex-1 bg-white/70 rounded-2xl shadow-lg p-6 border border-pojox-green flex flex-col"
@@ -15,7 +15,7 @@
       <Codemirror
         v-model="inputText"
         placeholder="Paste your JSON or JSON Schema here..."
-        :style="{ height: '350px' }"
+        :style="{ height: '450px' }"
         :autofocus="true"
         :indent-with-tab="true"
         :tab-size="2"
@@ -126,7 +126,7 @@
         :modelValue="outputText"
         :autofocus="true"
         :indent-with-tab="true"
-        :style="{ height: '350px' }"
+        :style="{ height: '450px' }"
         :tab-size="2"
         :extensions="cmExtensionsOutput"
         :theme="cmTheme"
