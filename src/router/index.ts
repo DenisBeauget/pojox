@@ -12,6 +12,11 @@ const router = createRouter({
         scrollToTop: true,
       },
     },
+    {
+      path: '/about',
+      name: 'About',
+      component: () => import('@/views/AboutView.vue'),
+    }
   ],
   scrollBehavior(to) {
     if (to.hash) {

@@ -1,27 +1,27 @@
 <template>
   <div
     id="transformer-tool"
-    class="flex flex-col md:flex-row gap-6 w-full p-6 font-display"
+    class="flex flex-col md:flex-row gap-6 w-full p-6 font-classic"
   >
     <div
-      class="flex-1 bg-white/70 rounded-2xl shadow-lg p-6 border border-pojox-green flex flex-col"
+      class="flex-1 bg-gradient-to-br from-[#e3d5b5]/90 to-[#e3d5b5] rounded-2xl shadow-lg p-6 border border-[#2ea66e]/50 flex flex-col hover:shadow-xl transition-all"
     >
       <h2
-        class="block mb-2 text-pojox-dark text-xl font-semibold"
+        class="block mb-4 text-[#1a1a1a] text-xl font-semibold p-3 border-b border-[#677d68]"
         id="input-label"
       >
-        Enter JSON / Schema:
+        Enter <span class="text-[#2ea66e]">JSON</span> / Schema:
       </h2>
       <Codemirror
         v-model="inputText"
         placeholder="Paste your JSON or JSON Schema here..."
-        :style="{ height: '350px' }"
+        :style="{ height: '450px' }"
         :autofocus="true"
         :indent-with-tab="true"
         :tab-size="2"
         :extensions="cmExtensions"
         :theme="cmTheme"
-        class="flex-grow"
+        class="flex-grow bg-gradient-to-br"
         aria-labelledby="input-label"
         role="textbox"
         aria-multiline="true"
@@ -29,7 +29,6 @@
       <div v-if="error" class="text-red-600 font-semibold mt-2" role="alert">
         {{ error }}
       </div>
-
       <div class="flex flex-col gap-2 mt-4">
         <div class="flex gap-2 justify-evenly items-center">
           <ClassicButton
@@ -111,14 +110,14 @@
       </div>
     </div>
     <div
-      class="flex-1 bg-white/70 rounded-2xl shadow-lg p-6 border border-pojox-green flex flex-col relative"
+      class="flex-1 bg-gradient-to-br from-[#e3d5b5]/90 to-[#e3d5b5] rounded-2xl shadow-lg p-6 border border-[#2ea66e]/50 flex flex-col relative hover:shadow-xl transition-all"
       aria-live="polite"
     >
       <h2
-        class="block mb-2 text-pojox-dark text-xl font-semibold"
+        class="block mb-4 text-[#1a1a1a] text-xl font-semibold p-3 border-b border-[#677d68]"
         id="output-label"
       >
-        Result:
+        <span class="text-[#1a1a1a]">Result</span>:
       </h2>
       <Codemirror
         id="output-text"
@@ -126,7 +125,7 @@
         :modelValue="outputText"
         :autofocus="true"
         :indent-with-tab="true"
-        :style="{ height: '350px' }"
+        :style="{ height: '450px' }"
         :tab-size="2"
         :extensions="cmExtensionsOutput"
         :theme="cmTheme"
@@ -137,14 +136,16 @@
       />
       <ClassicButton
         v-if="outputText != ''"
-        class="bg-pojox-green hover:bg-pojox-green/80 hover:shadow-pojox-bg-start text-white font-semibold py-2 px-4 rounded-xl shadow disabled:bg-pojox-green/30"
+        class="bg-[#2ea66e] hover:bg-[#2ea66e]/80 hover:shadow-[#677d68] text-white font-semibold py-2 px-4 rounded-xl shadow disabled:bg-[#2ea66e]/30 mt-4 transition-all"
         text="Copy"
         @click="copyToClipboard"
         role="button"
         :aria-disabled="outputText == '' ? 'true' : 'false'"
       />
       <div v-if="copied != false">
-        <p class="text-center pt-4">The text has been copied to clipboard!</p>
+        <p class="text-center pt-4 text-[#2ea66e] font-semibold">
+          The text has been copied to clipboard!
+        </p>
       </div>
     </div>
   </div>
@@ -248,6 +249,7 @@ const convert = async () => {
 
 const reset = () => {
   inputText.value = "";
+  outputText.value = "";
   error.value = "";
 };
 

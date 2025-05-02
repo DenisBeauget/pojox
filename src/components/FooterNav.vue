@@ -1,7 +1,7 @@
 <template>
   <footer
     id="footer-section"
-    class="font-display border-t border-gray-200 py-6"
+    class="font-classic border-t border-gray-200 py-6"
     aria-label="Site footer"
   >
     <div

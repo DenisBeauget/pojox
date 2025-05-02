@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-auto justify-evenly">
+  <div class="flex flex-auto justify-evenly mb-10 mt-10">
     <IconCard
       :link="icon1"
       text="Pojox accept any JSON or JSON shema syntax and convert it into most popular programming language."

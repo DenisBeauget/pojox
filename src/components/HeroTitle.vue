@@ -1,14 +1,14 @@
 <template>
-  <div class="flex justify-center align-middle font-display p-4 mt-4">
+  <div class="flex justify-center align-middle font-display p-4 mt-4 mb-10">
     <div class="flex flex-col align-middle justify-center w-1/3">
       <h1 class="text-4xl p-4 font-bold">
         Fastest way to convert JSON based element to POJO in
         <span
           class="font-bold bg-pojox-green transition-all duration-1000 ease-in-out"
-          >{{ currentTitle }}
+          ><span>{{ currentTitle || "Java" }}</span>
         </span>
       </h1>
-      <p class="text-2xl p-4 text-wrap">
+      <p class="text-2xl p-4 text-wrap font-classic">
         POJO is an acronym that stands for Plain Old Java Object. This acronym
         is mainly used to designate the ease of use of an object. With
         <span class="font-bold underline bg-pojox-green">Pojox</span>, you can
