@@ -38,25 +38,22 @@
           <div class="flex items-center justify-center h-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="120"
-              height="120"
+              width="130"
+              height="130"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="1"
+              stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="text-emerald-600"
+              class="lucide lucide-globe-lock-icon lucide-globe-lock text-emerald-600"
             >
-              <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
-              <path d="M7 12a5 5 0 0 1 0-4"></path>
-              <path d="M14 12a5 5 0 0 0 0-4"></path>
-              <path d="M8 16h.01"></path>
-              <path d="M16 16h.01"></path>
-              <path d="M12 12h.01"></path>
-              <path d="M12 7h.01"></path>
-              <path d="M16 7h.01"></path>
-              <path d="M7 7h.01"></path>
+              <path
+                d="M15.686 15A14.5 14.5 0 0 1 12 22a14.5 14.5 0 0 1 0-20 10 10 0 1 0 9.542 13"
+              />
+              <path d="M2 12h8.5" />
+              <path d="M20 6V4a2 2 0 1 0-4 0v2" />
+              <rect width="8" height="5" x="14" y="6" rx="1" />
             </svg>
           </div>
         </div>

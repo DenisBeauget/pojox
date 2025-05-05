@@ -102,35 +102,22 @@
                 </div>
                 <div class="grid gap-2">
                   <label class="text-sm font-medium">Options</label>
-                  <div class="border-b">
-                    <div class="flex">
-                      <button
-                        @click="activeTab = 'basic'"
-                        :class="[
-                          'inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium relative h-10 w-full rounded-none border-b-2 border-b-transparent text-gray-500',
-                          activeTab === 'basic'
-                            ? 'border-b-emerald-500 text-gray-900'
-                            : '',
-                        ]"
-                      >
-                        Basic
-                      </button>
-                      <button
-                        @click="activeTab = 'advanced'"
-                        :class="[
-                          'inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium relative h-10 w-full rounded-none border-b-2 border-b-transparent text-gray-500',
-                          activeTab === 'advanced'
-                            ? 'border-b-emerald-500 text-gray-900'
-                            : '',
-                        ]"
-                      >
-                        Advanced
-                      </button>
-                    </div>
-                  </div>
+                  <div class="border-b"></div>
 
-                  <div v-if="activeTab === 'basic'" class="pt-4">
-                    <div class="flex justify-center">
+                  <div class="flex flex-col gap-3">
+                    <div
+                      v-if="selectedTarget === 'java'"
+                      class="flex items-center gap-2"
+                    >
+                      <input
+                        type="checkbox"
+                        id="lombok"
+                        v-model="useLombok"
+                        class="h-4 w-4 rounded border-emerald-400"
+                      />
+                      <label for="lombok" class="text-sm"> Use Lombok </label>
+                    </div>
+                    <div class="flex justify-center mt-2">
                       <button
                         @click="convert"
                         :disabled="!!error || inputText == ''"
@@ -138,34 +125,6 @@
                       >
                         Convert Now
                       </button>
-                    </div>
-                  </div>
-
-                  <div v-if="activeTab === 'advanced'" class="pt-4">
-                    <div class="flex flex-col gap-3">
-                      <div
-                        v-if="selectedTarget === 'java'"
-                        class="flex items-center gap-2"
-                      >
-                        <input
-                          type="checkbox"
-                          id="lombok"
-                          v-model="useLombok"
-                          class="h-4 w-4 rounded border-gray-300"
-                        />
-                        <label for="lombok" class="text-sm">
-                          Use Lombok (Java only)
-                        </label>
-                      </div>
-                      <div class="flex justify-center mt-2">
-                        <button
-                          @click="convert"
-                          :disabled="!!error || inputText == ''"
-                          class="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 bg-emerald-500 text-white hover:bg-emerald-600 disabled:bg-emerald-300"
-                        >
-                          Convert Now
-                        </button>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -186,7 +145,11 @@
               <div class="flex gap-2">
                 <button
                   @click="copyToClipboard"
-                  class="inline-flex items-center justify-center rounded-md text-sm font-medium border border-gray-300 bg-white hover:bg-gray-100 h-9 px-3"
+                  :class="[
+                    'inline-flex items-center justify-center rounded-md text-sm font-medium border border-gray-300 bg-white hover:bg-gray-100 h-9 px-3',
+                    { 'opacity-50': outputText === '' },
+                  ]"
+                  :disabled="outputText === ''"
                 >
                   {{ copied ? "Copied!" : "Copy" }}
                   <svg
@@ -215,7 +178,11 @@
                   </svg>
                 </button>
                 <button
-                  class="inline-flex items-center justify-center rounded-md text-sm font-medium border border-gray-300 bg-white hover:bg-gray-100 h-9 px-3"
+                  :class="[
+                    'inline-flex items-center justify-center rounded-md text-sm font-medium border border-gray-300 bg-white hover:bg-gray-100 h-9 px-3',
+                    { 'opacity-50': outputText === '' },
+                  ]"
+                  :disabled="outputText === ''"
                   @click="downloadCode"
                 >
                   Download
@@ -277,16 +244,13 @@ import { EditorState } from "@codemirror/state";
 const inputText = ref("");
 const outputText = ref("");
 const selectedTarget = ref("typescript");
-const activeTab = ref("basic");
 
 const isSchema = ref(false);
 const error = ref("");
-//const lang = ref(javascript());
 const cmTheme = oneDark;
 const useLombok = ref(false);
 const copied = ref(false);
 
-// Computed output extensions
 const cmExtensionsOutput = computed(() => {
   if (error.value) {
     return [EditorView.lineWrapping, cmTheme, EditorState.readOnly.of(true)];
@@ -382,8 +346,6 @@ const copyToClipboard = () => {
 
 const downloadCode = () => {
   if (!outputText.value) return;
-
-  // Determine file extension based on language
   let fileExtension = ".txt";
   switch (selectedTarget.value) {
     case "typescript":
@@ -415,18 +377,15 @@ const downloadCode = () => {
       break;
   }
 
-  // Create a blob with the code content
   const blob = new Blob([outputText.value], { type: "text/plain" });
   const url = URL.createObjectURL(blob);
 
-  // Create a temporary anchor element to trigger download
   const a = document.createElement("a");
   a.href = url;
-  a.download = `generated_code${fileExtension}`;
+  a.download = `pojox_generated_code${fileExtension}`;
   document.body.appendChild(a);
   a.click();
 
-  // Clean up
   setTimeout(() => {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
