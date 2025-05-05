@@ -5,11 +5,11 @@
     <div class="container mx-auto px-4 md:px-6">
       <div class="flex flex-col items-center text-center space-y-4">
         <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
-          About Pojox
+          Privacy Policy
         </h1>
         <p class="max-w-[700px] text-gray-600 md:text-xl">
-          Pojox is a powerful tool designed to simplify the process of
-          converting JSON to code in various programming languages.
+          At Pojox, we prioritize the protection of your personal data and
+          privacy.
         </p>
       </div>
     </div>
@@ -19,27 +19,46 @@
     <div class="container mx-auto px-4 md:px-6">
       <div class="grid gap-12 md:grid-cols-2 items-center">
         <div>
-          <h2 class="text-3xl font-bold tracking-tighter mb-6">
-            What is POJO?
-          </h2>
+          <h2 class="text-3xl font-bold tracking-tighter mb-6">Our Approach</h2>
           <p class="text-gray-600 mb-4">
-            POJO stands for Plain Old Java Object. This acronym is mainly used
-            to designate the ease of use of an object.
+            Pojox was designed with a fundamental principle: privacy by default.
+            Our service requires no account creation and collects no personal
+            data.
           </p>
           <p class="text-gray-600 mb-4">
-            A POJO is an ordinary Java object, not bound by any special
-            restriction. It's not required to extend or implement some
-            predefined interfaces or classes.
+            When you use our JSON conversion tool, all operations are performed
+            locally in your browser. Your JSON data never leaves your device.
           </p>
           <p class="text-gray-600">
-            With Pojox, you can directly convert your JSON object or JSON schema
-            into the language of your choice in a matter of seconds.
+            We firmly believe that an effective development tool doesn't need
+            access to your personal information to provide a quality service.
           </p>
         </div>
         <div class="bg-emerald-50 p-8 rounded-lg">
-          <pre class="text-sm overflow-auto">
-                  <code class="text-gray-800">{{ pojoExample }}</code>
-                </pre>
+          <div class="flex items-center justify-center h-full">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="120"
+              height="120"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-emerald-600"
+            >
+              <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+              <path d="M7 12a5 5 0 0 1 0-4"></path>
+              <path d="M14 12a5 5 0 0 0 0-4"></path>
+              <path d="M8 16h.01"></path>
+              <path d="M16 16h.01"></path>
+              <path d="M12 12h.01"></path>
+              <path d="M12 7h.01"></path>
+              <path d="M16 7h.01"></path>
+              <path d="M7 7h.01"></path>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -49,11 +68,11 @@
     <div class="container mx-auto px-4 md:px-6">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl">
-          Our Mission
+          Our Commitments
         </h2>
         <p class="mt-4 text-gray-600 max-w-3xl mx-auto">
-          We aim to simplify the development process by providing tools that
-          save time and reduce errors.
+          Pojox is committed to respecting your privacy through these
+          fundamental principles.
         </p>
       </div>
       <div class="grid gap-8 md:grid-cols-3">
@@ -74,18 +93,18 @@
                 stroke-linejoin="round"
                 class="h-6 w-6 text-emerald-600"
               >
-                <path d="M16 18 22 12 16 6"></path>
-                <path d="M8 6 2 12 8 18"></path>
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+                <path d="m9 12 2 2 4-4"></path>
               </svg>
             </div>
             <h3 class="text-2xl font-semibold leading-none tracking-tight">
-              Simplify Development
+              No Data Collection
             </h3>
           </div>
           <div class="p-6 pt-0">
             <p class="text-base text-gray-500">
-              Our tools are designed to make the development process faster and
-              more efficient, allowing developers to focus on what matters.
+              We don't collect any personal data. No emails, no names, no usage
+              history. Your privacy remains intact.
             </p>
           </div>
         </div>
@@ -106,21 +125,19 @@
                 stroke-linejoin="round"
                 class="h-6 w-6 text-emerald-600"
               >
-                <circle cx="12" cy="12" r="10"></circle>
-                <path
-                  d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"
-                ></path>
-                <path d="M2 12h20"></path>
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                <circle cx="12" cy="16" r="1"></circle>
               </svg>
             </div>
             <h3 class="text-2xl font-semibold leading-none tracking-tight">
-              Support All Languages
+              Local Processing
             </h3>
           </div>
           <div class="p-6 pt-0">
             <p class="text-base text-gray-500">
-              We're committed to supporting a wide range of programming
-              languages to accommodate developers from all backgrounds.
+              All conversion operations are performed locally in your browser.
+              Your data never passes through our servers.
             </p>
           </div>
         </div>
@@ -141,22 +158,64 @@
                 stroke-linejoin="round"
                 class="h-6 w-6 text-emerald-600"
               >
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
               </svg>
             </div>
             <h3 class="text-2xl font-semibold leading-none tracking-tight">
-              Community Driven
+              No User Accounts
             </h3>
           </div>
           <div class="p-6 pt-0">
             <p class="text-base text-gray-500">
-              We value feedback from our users and continuously improve our
-              tools based on the needs of the developer community.
+              No account creation is required to use Pojox. Access the tool
+              directly and start converting without any intermediate steps.
             </p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid gap-12 md:grid-cols-2 items-center">
+        <div class="bg-emerald-50 p-8 rounded-lg">
+          <div class="flex items-center justify-center h-full">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="120"
+              height="120"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-emerald-600"
+            >
+              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <h2 class="text-3xl font-bold tracking-tighter mb-6">
+            Cookies and Tracking
+          </h2>
+          <p class="text-gray-600 mb-4">
+            Our site doesn't use any tracking cookies, behavioral analysis
+            systems, or targeted advertising. We believe your browsing should
+            remain private.
+          </p>
+          <p class="text-gray-600 mb-4">
+            The only cookies potentially used are those strictly necessary for
+            the technical functioning of the site, such as temporarily storing
+            your display preferences.
+          </p>
+          <p class="text-gray-600">
+            In summary: we don't track your activity, we don't sell your data,
+            and we don't use third-party trackers.
+          </p>
         </div>
       </div>
     </div>
@@ -168,11 +227,11 @@
     <div class="container mx-auto px-4 md:px-6">
       <div class="flex flex-col items-center text-center space-y-6">
         <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-          Ready to Try Pojox?
+          Ready to Use Pojox Safely?
         </h2>
         <p class="max-w-[600px] text-emerald-50 md:text-xl">
-          Start using our tool today and experience the fastest way to convert
-          JSON to code.
+          Start converting your JSON to code now, without compromising your
+          privacy.
         </p>
         <router-link
           to="/convert"
@@ -203,38 +262,4 @@
   </section>
 </template>
 
-<script setup lang="ts">
-import { ref } from "vue";
-
-const pojoExample = ref(`
-public class User {
-    private String name;
-    private int age;
-    private String email;
-    
-    // Getters and Setters
-    public String getName() {
-        return name;
-    }
-    
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    public int getAge() {
-        return age;
-    }
-    
-    public void setAge(int age) {
-        this.age = age;
-    }
-    
-    public String getEmail() {
-        return email;
-    }
-    
-    public void setEmail(String email) {
-        this.email = email;
-    }
-}`);
-</script>
+<script setup lang="ts"></script>

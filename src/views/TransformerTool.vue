@@ -1,154 +1,263 @@
 <template>
-  <div
-    id="transformer-tool"
-    class="flex flex-col md:flex-row gap-6 w-full p-6 font-classic"
+  <section
+    class="flex-1 py-12 bg-gradient-to-br from-emerald-50 via-white to-emerald-50"
   >
-    <div
-      class="flex-1 bg-gradient-to-br from-[#e3d5b5]/90 to-[#e3d5b5] rounded-2xl shadow-lg p-6 border border-[#2ea66e]/50 flex flex-col hover:shadow-xl transition-all"
-    >
-      <h2
-        class="block mb-4 text-[#1a1a1a] text-xl font-semibold p-3 border-b border-[#677d68]"
-        id="input-label"
-      >
-        Enter <span class="text-[#2ea66e]">JSON</span> / Schema:
-      </h2>
-      <Codemirror
-        v-model="inputText"
-        placeholder="Paste your JSON or JSON Schema here..."
-        :style="{ height: '450px' }"
-        :autofocus="true"
-        :indent-with-tab="true"
-        :tab-size="2"
-        :extensions="cmExtensions"
-        :theme="cmTheme"
-        class="flex-grow bg-gradient-to-br"
-        aria-labelledby="input-label"
-        role="textbox"
-        aria-multiline="true"
-      />
-      <div v-if="error" class="text-red-600 font-semibold mt-2" role="alert">
-        {{ error }}
-      </div>
-      <div class="flex flex-col gap-2 mt-4">
-        <div class="flex gap-2 justify-evenly items-center">
-          <ClassicButton
-            :disabled="!!error || inputText == ''"
-            class="bg-pojox-green hover:bg-pojox-green/80 hover:shadow-pojox-bg-start text-white font-semibold py-2 px-4 rounded-xl shadow disabled:bg-pojox-green/30"
-            text="Convert"
-            @click="convert"
-            role="button"
-            :aria-disabled="!!error ? 'true' : 'false'"
-          />
-
-          <ClassicButton
-            v-if="inputText != ''"
-            class="bg-pojox-green hover:bg-pojox-green/80 hover:shadow-pojox-bg-start text-white font-semibold py-2 px-4 rounded-xl shadow disabled:bg-pojox-green/30"
-            text="Reset"
-            @click="reset"
-            role="button"
-            :aria-disabled="!!error ? 'true' : 'false'"
-          />
-
-          <div class="flex items-center gap-2">
-            <label
-              for="selected-language"
-              class="text-pojox-dark text-xl font-semibold"
-              id="language-label"
-              >Language:</label
-            >
-            <select
-              id="selected-language"
-              v-model="selectedTarget"
-              class="pl-3 rounded-xl border border-pojox-green focus:outline-none focus:ring-2 focus:ring-pojox-green cursor-pointer"
-              aria-labelledby="language-label"
-            >
-              <option
-                v-for="lang in targetLanguages"
-                :key="lang.value"
-                :value="lang.value"
-              >
-                {{ lang.label }}
-              </option>
-            </select>
-          </div>
-        </div>
-
-        <div
-          v-if="selectedTarget == 'java'"
-          class="flex items-center gap-2 ml-100"
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="mb-8">
+        <router-link
+          to="/"
+          class="inline-flex items-center gap-2 text-sm font-medium text-gray-900 hover:text-emerald-500"
         >
-          <div class="relative inline-block">
-            <input
-              type="checkbox"
-              id="lombok"
-              v-model="useLombok"
-              class="sr-only"
-              :aria-checked="useLombok ? 'true' : 'false'"
-            />
-            <label for="lombok" class="flex items-center cursor-pointer">
-              <div
-                class="relative w-5 h-5 border-2 border-pojox-green rounded-md bg-white"
-              >
-                <svg
-                  v-show="useLombok"
-                  class="absolute inset-0 w-full h-full text-pojox-green"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="3"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-              </div>
-              <span class="ml-2 text-pojox-dark">Use Lombok</span>
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="flex-1 bg-gradient-to-br from-[#e3d5b5]/90 to-[#e3d5b5] rounded-2xl shadow-lg p-6 border border-[#2ea66e]/50 flex flex-col relative hover:shadow-xl transition-all"
-      aria-live="polite"
-    >
-      <h2
-        class="block mb-4 text-[#1a1a1a] text-xl font-semibold p-3 border-b border-[#677d68]"
-        id="output-label"
-      >
-        <span class="text-[#1a1a1a]">Result</span>:
-      </h2>
-      <Codemirror
-        id="output-text"
-        readonly
-        :modelValue="outputText"
-        :autofocus="true"
-        :indent-with-tab="true"
-        :style="{ height: '450px' }"
-        :tab-size="2"
-        :extensions="cmExtensionsOutput"
-        :theme="cmTheme"
-        class="flex-grow"
-        aria-labelledby="output-label"
-        role="textbox"
-        aria-multiline="true"
-      />
-      <ClassicButton
-        v-if="outputText != ''"
-        class="bg-[#2ea66e] hover:bg-[#2ea66e]/80 hover:shadow-[#677d68] text-white font-semibold py-2 px-4 rounded-xl shadow disabled:bg-[#2ea66e]/30 mt-4 transition-all"
-        text="Copy"
-        @click="copyToClipboard"
-        role="button"
-        :aria-disabled="outputText == '' ? 'true' : 'false'"
-      />
-      <div v-if="copied != false">
-        <p class="text-center pt-4 text-[#2ea66e] font-semibold">
-          The text has been copied to clipboard!
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="h-4 w-4"
+          >
+            <path d="m12 19-7-7 7-7"></path>
+            <path d="M19 12H5"></path>
+          </svg>
+          <span>Back to Home</span>
+        </router-link>
+        <h1
+          class="mt-4 text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl"
+        >
+          Convert JSON to Code
+        </h1>
+        <p class="mt-2 text-gray-600">
+          Paste your JSON, select your target language, and get your code
+          instantly.
         </p>
       </div>
+
+      <div class="grid gap-8 lg:grid-cols-2">
+        <div class="rounded-lg border-2 bg-white">
+          <div class="flex flex-col space-y-1.5 p-6">
+            <h3 class="text-2xl font-semibold leading-none tracking-tight">
+              Input JSON
+            </h3>
+            <p class="text-sm text-gray-500">
+              Paste your JSON object or schema here
+            </p>
+          </div>
+          <div class="p-6 pt-0">
+            <div class="relative">
+              <Codemirror
+                v-model="inputText"
+                placeholder="Paste your JSON or JSON Schema here..."
+                :style="{ height: '500px' }"
+                :autofocus="true"
+                :indent-with-tab="true"
+                :tab-size="2"
+                :extensions="cmExtensions"
+                :theme="cmTheme"
+                class="rounded-md bg-gray-50 overflow-auto"
+                aria-labelledby="input-label"
+                role="textbox"
+                aria-multiline="true"
+              />
+              <div
+                v-if="error"
+                class="text-red-600 font-semibold mt-2"
+                role="alert"
+              >
+                {{ error }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-6">
+          <div class="rounded-lg border-2 bg-white">
+            <div class="flex flex-col space-y-1.5 p-6 pb-3">
+              <h3 class="text-2xl font-semibold leading-none tracking-tight">
+                Output Settings
+              </h3>
+            </div>
+            <div class="p-6 pt-0">
+              <div class="grid gap-4">
+                <div class="grid gap-2">
+                  <label for="language" class="text-sm font-medium">
+                    Target Language
+                  </label>
+                  <select
+                    id="language"
+                    v-model="selectedTarget"
+                    class="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  >
+                    <option
+                      v-for="lang in targetLanguages"
+                      :key="lang.value"
+                      :value="lang.value"
+                    >
+                      {{ lang.label }}
+                    </option>
+                  </select>
+                </div>
+                <div class="grid gap-2">
+                  <label class="text-sm font-medium">Options</label>
+                  <div class="border-b">
+                    <div class="flex">
+                      <button
+                        @click="activeTab = 'basic'"
+                        :class="[
+                          'inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium relative h-10 w-full rounded-none border-b-2 border-b-transparent text-gray-500',
+                          activeTab === 'basic'
+                            ? 'border-b-emerald-500 text-gray-900'
+                            : '',
+                        ]"
+                      >
+                        Basic
+                      </button>
+                      <button
+                        @click="activeTab = 'advanced'"
+                        :class="[
+                          'inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium relative h-10 w-full rounded-none border-b-2 border-b-transparent text-gray-500',
+                          activeTab === 'advanced'
+                            ? 'border-b-emerald-500 text-gray-900'
+                            : '',
+                        ]"
+                      >
+                        Advanced
+                      </button>
+                    </div>
+                  </div>
+
+                  <div v-if="activeTab === 'basic'" class="pt-4">
+                    <div class="flex justify-center">
+                      <button
+                        @click="convert"
+                        :disabled="!!error || inputText == ''"
+                        class="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 bg-emerald-500 text-white hover:bg-emerald-600 disabled:bg-emerald-300"
+                      >
+                        Convert Now
+                      </button>
+                    </div>
+                  </div>
+
+                  <div v-if="activeTab === 'advanced'" class="pt-4">
+                    <div class="flex flex-col gap-3">
+                      <div
+                        v-if="selectedTarget === 'java'"
+                        class="flex items-center gap-2"
+                      >
+                        <input
+                          type="checkbox"
+                          id="lombok"
+                          v-model="useLombok"
+                          class="h-4 w-4 rounded border-gray-300"
+                        />
+                        <label for="lombok" class="text-sm">
+                          Use Lombok (Java only)
+                        </label>
+                      </div>
+                      <div class="flex justify-center mt-2">
+                        <button
+                          @click="convert"
+                          :disabled="!!error || inputText == ''"
+                          class="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 bg-emerald-500 text-white hover:bg-emerald-600 disabled:bg-emerald-300"
+                        >
+                          Convert Now
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-lg border-2 bg-white flex-1">
+            <div class="flex flex-row items-center justify-between p-6 pb-2">
+              <div>
+                <h3 class="text-2xl font-semibold leading-none tracking-tight">
+                  Generated Code
+                </h3>
+                <p class="text-sm text-gray-500">
+                  {{ getLanguageLabel(selectedTarget) }} code
+                </p>
+              </div>
+              <div class="flex gap-2">
+                <button
+                  @click="copyToClipboard"
+                  class="inline-flex items-center justify-center rounded-md text-sm font-medium border border-gray-300 bg-white hover:bg-gray-100 h-9 px-3"
+                >
+                  {{ copied ? "Copied!" : "Copy" }}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ml-2 h-4 w-4"
+                  >
+                    <rect
+                      width="14"
+                      height="14"
+                      x="8"
+                      y="8"
+                      rx="2"
+                      ry="2"
+                    ></rect>
+                    <path
+                      d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+                    ></path>
+                  </svg>
+                </button>
+                <button
+                  class="inline-flex items-center justify-center rounded-md text-sm font-medium border border-gray-300 bg-white hover:bg-gray-100 h-9 px-3"
+                  @click="downloadCode"
+                >
+                  Download
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ml-2 h-4 w-4"
+                  >
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" x2="12" y1="15" y2="3"></line>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="p-6 pt-0">
+              <Codemirror
+                id="output-text"
+                readonly
+                :modelValue="outputText"
+                :style="{ height: '300px' }"
+                :tab-size="2"
+                :extensions="cmExtensionsOutput"
+                :theme="cmTheme"
+                class="rounded-md bg-gray-50 overflow-auto"
+                aria-labelledby="output-label"
+                role="textbox"
+                aria-multiline="true"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
@@ -161,61 +270,67 @@ import { rust } from "@codemirror/lang-rust";
 import { go } from "@codemirror/lang-go";
 import { oneDark } from "@codemirror/theme-one-dark";
 import { convertWithQuicktype } from "@/services/convertService";
-import { ref, watchEffect } from "vue";
-import ClassicButton from "@/components/ClassicButton.vue";
+import { ref, watchEffect, computed } from "vue";
 import { analyze } from "@/services/checkInputService";
 import { EditorState } from "@codemirror/state";
 
 const inputText = ref("");
 const outputText = ref("");
 const selectedTarget = ref("typescript");
+const activeTab = ref("basic");
 
 const isSchema = ref(false);
 const error = ref("");
-const lang = ref(javascript());
+//const lang = ref(javascript());
 const cmTheme = oneDark;
 const useLombok = ref(false);
 const copied = ref(false);
 
-let cmExtensionsOutput = [
-  json(),
-  EditorView.lineWrapping,
-  cmTheme,
-  EditorState.readOnly.of(true),
-];
-
-function setCmExtensionsOutput() {
+// Computed output extensions
+const cmExtensionsOutput = computed(() => {
   if (error.value) {
-    return [];
+    return [EditorView.lineWrapping, cmTheme, EditorState.readOnly.of(true)];
   }
 
   switch (selectedTarget.value) {
     case "javascript":
     case "typescript":
-      lang.value = javascript();
-      break;
+      return [
+        javascript(),
+        EditorView.lineWrapping,
+        cmTheme,
+        EditorState.readOnly.of(true),
+      ];
     case "java":
-      lang.value = java();
-      break;
+      return [
+        java(),
+        EditorView.lineWrapping,
+        cmTheme,
+        EditorState.readOnly.of(true),
+      ];
     case "rust":
-      lang.value = rust();
-      break;
+      return [
+        rust(),
+        EditorView.lineWrapping,
+        cmTheme,
+        EditorState.readOnly.of(true),
+      ];
     case "go":
-      lang.value = go();
-      break;
+      return [
+        go(),
+        EditorView.lineWrapping,
+        cmTheme,
+        EditorState.readOnly.of(true),
+      ];
     default:
-      lang.value = javascript();
-      break;
+      return [
+        javascript(),
+        EditorView.lineWrapping,
+        cmTheme,
+        EditorState.readOnly.of(true),
+      ];
   }
-
-  // @ts-expect-error even with default value
-  return [
-    lang.value,
-    EditorView.lineWrapping,
-    cmTheme,
-    EditorState.readOnly.of(true),
-  ];
-}
+});
 
 const cmExtensions = [json(), EditorView.lineWrapping, cmTheme];
 
@@ -227,7 +342,7 @@ watchEffect(() => {
 
 const targetLanguages = [
   { value: "typescript", label: "TypeScript" },
-  { value: "javascript", label: "Javascript" },
+  { value: "javascript", label: "JavaScript" },
   { value: "rust", label: "Rust" },
   { value: "go", label: "Go" },
   { value: "java", label: "Java" },
@@ -237,8 +352,16 @@ const targetLanguages = [
   { value: "schema", label: "JSON Schema" },
 ];
 
+function getLanguageLabel(value: string): string {
+  const language = targetLanguages.find((lang) => lang.value === value);
+  return language ? language.label : value;
+}
+
 const convert = async () => {
-  cmExtensionsOutput = setCmExtensionsOutput();
+  if (inputText.value.trim() === "" || error.value) {
+    return;
+  }
+
   const result = await convertWithQuicktype(
     inputText.value,
     selectedTarget.value,
@@ -247,22 +370,66 @@ const convert = async () => {
   outputText.value = result;
 };
 
-const reset = () => {
-  inputText.value = "";
-  outputText.value = "";
-  error.value = "";
-};
-
 const copyToClipboard = () => {
-  const outputTextElement = document.getElementById("output-text");
-  if (outputTextElement) {
+  if (outputText.value) {
     navigator.clipboard.writeText(outputText.value);
     copied.value = true;
     setTimeout(() => {
       copied.value = false;
-    }, 1000);
-  } else {
-    console.error("error");
+    }, 2000);
   }
+};
+
+const downloadCode = () => {
+  if (!outputText.value) return;
+
+  // Determine file extension based on language
+  let fileExtension = ".txt";
+  switch (selectedTarget.value) {
+    case "typescript":
+      fileExtension = ".ts";
+      break;
+    case "javascript":
+      fileExtension = ".js";
+      break;
+    case "rust":
+      fileExtension = ".rs";
+      break;
+    case "go":
+      fileExtension = ".go";
+      break;
+    case "java":
+      fileExtension = ".java";
+      break;
+    case "dart":
+      fileExtension = ".dart";
+      break;
+    case "kotlin":
+      fileExtension = ".kt";
+      break;
+    case "python":
+      fileExtension = ".py";
+      break;
+    case "schema":
+      fileExtension = ".json";
+      break;
+  }
+
+  // Create a blob with the code content
+  const blob = new Blob([outputText.value], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+
+  // Create a temporary anchor element to trigger download
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `generated_code${fileExtension}`;
+  document.body.appendChild(a);
+  a.click();
+
+  // Clean up
+  setTimeout(() => {
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }, 0);
 };
 </script>
