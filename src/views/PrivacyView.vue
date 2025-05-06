@@ -73,7 +73,9 @@
         </p>
       </div>
       <div class="grid gap-8 md:grid-cols-3">
-        <div class="rounded-lg border bg-white shadow-sm">
+        <div
+          class="rounded-lg border-2 border-emerald-100 transition-all hover:border-emerald-200 hover:shadow-md bg-white"
+        >
           <div class="flex flex-col space-y-1.5 p-6">
             <div
               class="w-12 h-12 rounded-lg bg-emerald-100 flex items-center justify-center mb-4"
@@ -105,7 +107,9 @@
             </p>
           </div>
         </div>
-        <div class="rounded-lg border bg-white shadow-sm">
+        <div
+          class="rounded-lg border-2 border-emerald-100 transition-all hover:border-emerald-200 hover:shadow-md bg-white"
+        >
           <div class="flex flex-col space-y-1.5 p-6">
             <div
               class="w-12 h-12 rounded-lg bg-emerald-100 flex items-center justify-center mb-4"
@@ -138,7 +142,9 @@
             </p>
           </div>
         </div>
-        <div class="rounded-lg border bg-white shadow-sm">
+        <div
+          class="rounded-lg border-2 border-emerald-100 transition-all hover:border-emerald-200 hover:shadow-md bg-white"
+        >
           <div class="flex flex-col space-y-1.5 p-6">
             <div
               class="w-12 h-12 rounded-lg bg-emerald-100 flex items-center justify-center mb-4"

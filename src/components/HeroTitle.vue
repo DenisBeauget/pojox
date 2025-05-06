@@ -8,7 +8,8 @@
           <h1
             class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl"
           >
-            Convert JSON to <span class="text-emerald-500">POJO</span> in
+            Convert JSON to
+            <span class="text-emerald-500"> {{ currentTitle }} </span> in
             seconds
           </h1>
           <p class="max-w-[600px] text-gray-600 md:text-xl">
@@ -90,10 +91,6 @@ const changeTitle = () => {
   currentIndex.value = (currentIndex.value + 1) % titles.length;
   currentTitle.value = titles[currentIndex.value];
 };
-
-/*const scrollToConverter = () => {
-  router.push("/#transformer-tool");
-};*/
 
 onMounted(() => {
   setInterval(changeTitle, 2000);

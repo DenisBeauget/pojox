@@ -45,6 +45,36 @@
     </div>
   </section>
 
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid gap-12 md:grid-cols-2 items-center">
+        <div class="bg-emerald-50 p-8 rounded-lg">
+          <pre class="text-sm overflow-auto">
+                  <code class="text-gray-800">{{ jsonExample }}</code>
+                </pre>
+        </div>
+        <div>
+          <h2 class="text-3xl font-bold tracking-tighter mb-6">
+            What is JSON?
+          </h2>
+          <p class="text-gray-600 mb-4">
+            POJO stands for Plain Old Java Object. This acronym is mainly used
+            to designate the ease of use of an object.
+          </p>
+          <p class="text-gray-600 mb-4">
+            A POJO is an ordinary Java object, not bound by any special
+            restriction. It's not required to extend or implement some
+            predefined interfaces or classes.
+          </p>
+          <p class="text-gray-600">
+            With Pojox, you can directly convert your JSON object or JSON schema
+            into the language of your choice in a matter of seconds.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="py-20 bg-emerald-50">
     <div class="container mx-auto px-4 md:px-6">
       <div class="text-center mb-12">
@@ -57,7 +87,9 @@
         </p>
       </div>
       <div class="grid gap-8 md:grid-cols-3">
-        <div class="rounded-lg border bg-white shadow-sm">
+        <div
+          class="rounded-lg border-2 border-emerald-100 transition-all hover:border-emerald-200 hover:shadow-md bg-white"
+        >
           <div class="flex flex-col space-y-1.5 p-6">
             <div
               class="w-12 h-12 rounded-lg bg-emerald-100 flex items-center justify-center mb-4"
@@ -89,7 +121,9 @@
             </p>
           </div>
         </div>
-        <div class="rounded-lg border bg-white shadow-sm">
+        <div
+          class="rounded-lg border-2 border-emerald-100 transition-all hover:border-emerald-200 hover:shadow-md bg-white"
+        >
           <div class="flex flex-col space-y-1.5 p-6">
             <div
               class="w-12 h-12 rounded-lg bg-emerald-100 flex items-center justify-center mb-4"
@@ -124,7 +158,9 @@
             </p>
           </div>
         </div>
-        <div class="rounded-lg border bg-white shadow-sm">
+        <div
+          class="rounded-lg border-2 border-emerald-100 transition-all hover:border-emerald-200 hover:shadow-md bg-white"
+        >
           <div class="flex flex-col space-y-1.5 p-6">
             <div
               class="w-12 h-12 rounded-lg bg-emerald-100 flex items-center justify-center mb-4"
@@ -237,4 +273,44 @@ public class User {
         this.email = email;
     }
 }`);
+
+const jsonExample = ref(`
+{
+  "squadName": "Super hero squad",
+  "homeTown": "Metro City",
+  "formed": 2016,
+  "secretBase": "Super tower",
+  "active": true,
+  "members": [
+    {
+      "name": "Molecule Man",
+      "age": 29,
+      "secretIdentity": "Dan Jukes",
+      "powers": ["Radiation resistance", "Turning tiny", "Radiation blast"]
+    },
+    {
+      "name": "Madame Uppercut",
+      "age": 39,
+      "secretIdentity": "Jane Wilson",
+      "powers": [
+        "Million tonne punch",
+        "Damage resistance",
+        "Superhuman reflexes"
+      ]
+    },
+    {
+      "name": "Eternal Flame",
+      "age": 1000000,
+      "secretIdentity": "Unknown",
+      "powers": [
+        "Immortality",
+        "Heat Immunity",
+        "Inferno",
+        "Teleportation",
+        "Interdimensional travel"
+      ]
+    }
+  ]
+}
+`);
 </script>

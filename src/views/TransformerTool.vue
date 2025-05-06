@@ -51,7 +51,7 @@
               <Codemirror
                 v-model="inputText"
                 placeholder="Paste your JSON or JSON Schema here..."
-                :style="{ height: '500px' }"
+                :style="{ height: '658px' }"
                 :autofocus="true"
                 :indent-with-tab="true"
                 :tab-size="2"
@@ -117,7 +117,8 @@
                       />
                       <label for="lombok" class="text-sm"> Use Lombok </label>
                     </div>
-                    <div class="flex justify-center mt-2">
+
+                    <div class="flex flex-col justify-center mt-2">
                       <button
                         @click="convert"
                         :disabled="!!error || inputText == ''"
@@ -125,6 +126,9 @@
                       >
                         Convert Now
                       </button>
+                      <div v-if="inputText === ''" class="text-center mt-3">
+                        <p>Please paste your JSON to start</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -210,7 +214,7 @@
                 id="output-text"
                 readonly
                 :modelValue="outputText"
-                :style="{ height: '300px' }"
+                :style="{ height: '400px' }"
                 :tab-size="2"
                 :extensions="cmExtensionsOutput"
                 :theme="cmTheme"
