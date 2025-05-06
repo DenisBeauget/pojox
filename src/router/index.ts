@@ -25,6 +25,11 @@ const router = createRouter({
       name: 'Privacy',
       component: () => import('@/views/PrivacyView.vue'),
     },
+    {
+      path: '/beautify',
+      name: 'Beautify',
+      component: () => import('@/views/BeautifyView.vue'),
+    },
   ],
   scrollBehavior(to) {
     if (to.hash) {

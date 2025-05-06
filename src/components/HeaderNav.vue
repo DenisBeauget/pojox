@@ -30,6 +30,15 @@
           Convert
         </router-link>
         <router-link
+          to="/beautify"
+          class="text-sm font-medium transition-colors hover:text-emerald-500"
+          :class="
+            $route.path === '/beautify' ? 'text-emerald-500' : 'text-gray-700'
+          "
+        >
+          Beautify
+        </router-link>
+        <router-link
           to="/about"
           class="text-sm font-medium transition-colors hover:text-emerald-500"
           :class="
