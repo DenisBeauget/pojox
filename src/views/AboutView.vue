@@ -20,7 +20,7 @@
       <div class="grid gap-12 md:grid-cols-2 items-center">
         <div>
           <h2 class="text-3xl font-bold tracking-tighter mb-6">
-            What is POJO?
+            What is <span class="text-emerald-300">POJO?</span>
           </h2>
           <p class="text-gray-600 mb-4">
             POJO stands for Plain Old Java Object. This acronym is mainly used
@@ -55,20 +55,36 @@
         </div>
         <div>
           <h2 class="text-3xl font-bold tracking-tighter mb-6">
-            What is JSON?
+            What is <span class="text-emerald-300">JSON?</span>
           </h2>
           <p class="text-gray-600 mb-4">
-            POJO stands for Plain Old Java Object. This acronym is mainly used
-            to designate the ease of use of an object.
+            Since we have other options like YAML XML, etc., why choose
+            <span class="text-gray-600 font-bold">JSON</span>?
           </p>
           <p class="text-gray-600 mb-4">
-            A POJO is an ordinary Java object, not bound by any special
-            restriction. It's not required to extend or implement some
-            predefined interfaces or classes.
+            The answer lies in the
+            <span class="italic">history of client-server communication</span>
+            itself. Until a few decades ago, the communication between client
+            and server was inefficient, as the server was overburdened with a
+            heavy workload.
           </p>
+
+          <p class="text-gray-600 mb-4">
+            For example, your web browser was only supposed to render outcomes
+            like:
+          </p>
+          <ul class="list-disc pl-5 text-gray-600 mb-4">
+            <li>Web page search results</li>
+            <li>Query outcomes</li>
+            <li>Dynamic content</li>
+          </ul>
           <p class="text-gray-600">
-            With Pojox, you can directly convert your JSON object or JSON schema
-            into the language of your choice in a matter of seconds.
+            The rest of the work-from processing requests to forwarding them-was
+            weighed on the server. Thus, a
+            <span class="font-semibold text-emerald-300">lightweight</span>
+            and
+            <span class="font-semibold text-emerald-300">text-based</span>
+            structure like JSON format was needed to solve all these problems.
           </p>
         </div>
       </div>
