@@ -1,45 +1,57 @@
 <template>
-  <header>
-    <nav
-      class="flex justify-between items-center fixed w-full z-20 top-0 bg-white/20 backdrop-blur-md border-b border-gray-200 px-6 py-4"
-    >
-      <div class="flex w-full">
-        <img
-          class="p-1 w-[200px] sm:w-[250px]"
-          src="@/assets/logo-color.svg"
-          alt="logo"
-        />
+  <header class="sticky top-0 z-50 w-full border-b bg-white">
+    <div class="container mx-auto px-4 flex h-16 items-center justify-between">
+      <div class="flex items-center gap-2 cursor-pointer">
+        <router-link
+          to="/"
+          class="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-white font-semibold"
+          :class="$route.path === '/' ? 'text-emerald-500' : 'text-gray-700'"
+        >
+          P
+        </router-link>
+        <span class="text-xl font-bold">Pojox</span>
       </div>
 
-      <div class="flex p-2 font-classic text-white mr-4">
-        <ul class="flex items-center justify-center gap-6">
-          <li>
-            <RouterLink
-              to="/#home-section"
-              class="px-5 py-1 rounded-lg bg-pojox-green/80 text-white transition duration-200 ease-in-out hover:bg-pojox-green/90 hover:scale-105"
-            >
-              Home
-            </RouterLink>
-          </li>
-          <li>
-            <RouterLink
-              to="/#transformer-tool"
-              class="px-5 py-1 rounded-lg bg-pojox-green/80 text-white transition duration-200 ease-in-out hover:bg-pojox-green/90 hover:scale-105"
-            >
-              Convert
-            </RouterLink>
-          </li>
-          <li>
-            <RouterLink
-              to="/about"
-              class="px-5 py-1 rounded-lg bg-pojox-green/80 text-white transition duration-200 ease-in-out hover:bg-pojox-green/90 hover:scale-105"
-            >
-              About
-            </RouterLink>
-          </li>
-        </ul>
+      <nav class="hidden md:flex gap-6">
+        <router-link
+          to="/"
+          class="text-sm font-medium transition-colors hover:text-emerald-500"
+          :class="$route.path === '/' ? 'text-emerald-500' : 'text-gray-700'"
+        >
+          Home
+        </router-link>
+        <router-link
+          to="/convert"
+          class="text-sm font-medium transition-colors hover:text-emerald-500"
+          :class="
+            $route.path === '/convert' ? 'text-emerald-500' : 'text-gray-700'
+          "
+        >
+          Convert
+        </router-link>
+        <router-link
+          to="/about"
+          class="text-sm font-medium transition-colors hover:text-emerald-500"
+          :class="
+            $route.path === '/about' ? 'text-emerald-500' : 'text-gray-700'
+          "
+        >
+          About
+        </router-link>
+      </nav>
+
+      <div class="flex items-center gap-4">
+        <router-link
+          to="/convert"
+          class="inline-flex items-center justify-center rounded-md text-sm font-medium bg-emerald-500 text-white hover:bg-emerald-600 h-10 px-4 py-2"
+          :class="
+            $route.path === '/convert' ? 'text-emerald-500' : 'text-gray-700'
+          "
+        >
+          Try Now
+        </router-link>
       </div>
-    </nav>
+    </div>
   </header>
 </template>
 
