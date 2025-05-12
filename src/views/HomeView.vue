@@ -9,7 +9,5 @@ import HeroTitle from "@/components/HeroTitle.vue";
     <HeroTitle />
     <IconsView />
     <CTAButton />
-    <!-- <TransformerTool />-->
-    <!--<JsonInfo />-->
   </div>
 </template>
