@@ -1,4 +1,3 @@
-export async function beautifyJSON(entry: string) {
-    console.log(entry)
-    return JSON.stringify(JSON.parse(entry), null, 4);
+export async function beautifyJSON(entry: string, tab: number) {
+    return JSON.stringify(JSON.parse(entry), null, tab);
 }

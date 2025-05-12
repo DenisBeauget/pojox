@@ -35,15 +35,47 @@
         </p>
       </div>
 
-      <div class="grid gap-38 lg:grid-cols-2">
+      <div class="grid gap-30 lg:grid-cols-2">
         <div class="rounded-lg border-2 bg-white">
-          <div class="flex flex-col space-y-1.5 p-6">
-            <h3 class="text-2xl font-semibold leading-none tracking-tight">
-              Input JSON
-            </h3>
-            <p class="text-sm text-gray-500">Paste your JSON object here</p>
+          <div class="flex">
+            <div class="flex flex-col space-y-1.5 p-6">
+              <h3 class="text-2xl font-semibold leading-none tracking-tight">
+                Input JSON
+              </h3>
+              <p class="text-sm text-gray-500">Paste your JSON object here</p>
+            </div>
+            <div class="flex gap-2 justify-center">
+              <button
+                class="inline-flex items-center justify-center rounded-md text-sm font-medium bg-emerald-500 text-white disabled:bg-emerald-300 hover:bg-emerald-600 h-10 px-4 py-2 mt-8 ml-4"
+                :disabled="!!error || inputText == ''"
+                @click="convert"
+              >
+                Convert
+              </button>
+              <div class="flex flex-col px-6 py-3 h-10">
+                <label for="tabulation" class="text-sm font-medium pb-1">
+                  Select spaces
+                </label>
+                <select
+                  :disabled="!!error || inputText == ''"
+                  id="tabulation"
+                  v-model="tabNumber"
+                  :class="[
+                    'flex mb-4 h-10 w-full items-center justify-between rounded-md border border-gray-300 disabled:border-gray-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500',
+                    { 'opacity-50': inputText === '' },
+                  ]"
+                >
+                  <option
+                    v-for="lang in spacesAvailable"
+                    :key="lang.value"
+                    :value="lang.value"
+                  >
+                    {{ lang.label }}
+                  </option>
+                </select>
+              </div>
+            </div>
           </div>
-          <button @click="convert">Convert</button>
           <div class="p-6 pt-0">
             <div class="relative">
               <Codemirror
@@ -182,6 +214,14 @@ const error = ref("");
 const cmTheme = oneDark;
 const copied = ref(false);
 
+const tabNumber = ref(2);
+
+const spacesAvailable = [
+  { value: 2, label: 2 },
+  { value: 4, label: 4 },
+  { value: 6, label: 6 },
+];
+
 const cmExtensionsOutput = [
   json(),
   EditorView.lineWrapping,
@@ -202,7 +242,7 @@ const convert = async () => {
     return;
   }
 
-  const result = await beautifyJSON(inputText.value);
+  const result = await beautifyJSON(inputText.value, tabNumber.value);
   outputText.value = result;
 };
 
@@ -224,7 +264,7 @@ const downloadCode = () => {
 
   const a = document.createElement("a");
   a.href = url;
-  a.download = `pojox_generated_code${fileExtension}`;
+  a.download = `pojox_json_formatted${fileExtension}`;
   document.body.appendChild(a);
   a.click();
 
