@@ -36,6 +36,11 @@ const router = createRouter({
       component: () => import('@/views/ContactView.vue'),
     },
     {
+      path: '/terms',
+      name: 'Terms',
+      component: () => import('@/views/TermsView.vue')
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'Default',
       component: () => import('@/components/NotFound.vue'),

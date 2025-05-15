@@ -69,7 +69,7 @@ const faqs = ref([
   {
     question: "Is Pojox free to use?",
     answer:
-      "Pojox is designed to be totally free, simple tools, simple task, no price.",
+      "Pojox is designed to be totally free, simple tool, simple task, no price.",
     isOpen: false,
   },
   {
@@ -80,7 +80,7 @@ const faqs = ref([
   },
 ]);
 
-const toggleFaq = (index) => {
+const toggleFaq = (index: number) => {
   faqs.value[index].isOpen = !faqs.value[index].isOpen;
 };
 </script>
