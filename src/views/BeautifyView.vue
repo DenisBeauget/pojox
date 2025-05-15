@@ -110,7 +110,9 @@
                 <h3 class="text-2xl font-semibold leading-none tracking-tight">
                   Beautified JSON
                 </h3>
-                <p class="text-sm text-gray-500">Now you can copy it here</p>
+                <p class="text-sm text-gray-500 mb-5">
+                  Now you can copy it here
+                </p>
               </div>
               <div class="flex gap-2">
                 <button

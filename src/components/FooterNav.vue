@@ -11,19 +11,29 @@
         </div>
         <span class="text-xl font-bold">Pojox</span>
       </div>
-      <p class="text-sm text-gray-500">
+      <p class="text-sm text-gray-500 ml-20">
         © {{ new Date().getFullYear() }} Pojox. All rights reserved.
       </p>
+
       <div class="flex gap-4">
-        <a href="#" class="text-sm text-gray-500 hover:text-gray-900">
+        <router-link
+          to="/terms"
+          class="text-sm text-gray-500 hover:text-gray-900"
+        >
           Terms
-        </a>
-        <a href="/privacy" class="text-sm text-gray-500 hover:text-gray-900">
+        </router-link>
+        <router-link
+          to="/privacy"
+          class="text-sm text-gray-500 hover:text-gray-900"
+        >
           Privacy
-        </a>
-        <a href="#" class="text-sm text-gray-500 hover:text-gray-900">
+        </router-link>
+        <router-link
+          to="/contact"
+          class="text-sm text-gray-500 hover:text-gray-900"
+        >
           Contact
-        </a>
+        </router-link>
       </div>
     </div>
   </footer>
