@@ -30,6 +30,16 @@ const router = createRouter({
       name: 'Beautify',
       component: () => import('@/views/BeautifyView.vue'),
     },
+    {
+      path: '/contact',
+      name: 'Contact',
+      component: () => import('@/views/ContactView.vue'),
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'Default',
+      component: () => import('@/components/NotFound.vue'),
+    },
   ],
   scrollBehavior(to) {
     if (to.hash) {

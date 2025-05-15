@@ -21,7 +21,7 @@
         <a href="/privacy" class="text-sm text-gray-500 hover:text-gray-900">
           Privacy
         </a>
-        <a href="#" class="text-sm text-gray-500 hover:text-gray-900">
+        <a href="/contact" class="text-sm text-gray-500 hover:text-gray-900">
           Contact
         </a>
       </div>
