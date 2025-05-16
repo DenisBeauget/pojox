@@ -122,7 +122,7 @@
                       <button
                         @click="convert"
                         :disabled="!!error || inputText == ''"
-                        class="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 bg-emerald-500 text-white hover:bg-emerald-600 disabled:bg-emerald-300"
+                        class="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 bg-emerald-500 text-white hover:bg-emerald-600 disabled:bg-emerald-300 cursor-pointer"
                       >
                         Convert Now
                       </button>
@@ -211,9 +211,8 @@
             </div>
             <div class="p-6 pt-0">
               <Codemirror
-                id="output-text"
+                v-model="outputText"
                 readonly
-                :modelValue="outputText"
                 :style="{ height: '400px' }"
                 :tab-size="2"
                 :extensions="cmExtensionsOutput"

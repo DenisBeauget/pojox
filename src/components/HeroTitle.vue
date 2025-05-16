@@ -67,11 +67,12 @@
         </div>
       </div>
     </div>
+    <div ref="adContainer" class="ad-container mt-12 w-full"></div>
   </section>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 
 const titles: string[] = [
   "Java",
@@ -87,10 +88,50 @@ const titles: string[] = [
 const currentIndex = ref(0);
 const currentTitle = ref(titles[currentIndex.value]);
 
+const adContainer = ref<HTMLDivElement | null>(null);
+let adScript: HTMLScriptElement | null = null;
+
+let titleInterval: number | null | undefined = null;
+
 const changeTitle = () => {
   currentIndex.value = (currentIndex.value + 1) % titles.length;
   currentTitle.value = titles[currentIndex.value];
 };
+
+const loadAdsterra = () => {
+  const containerDiv = document.createElement("div");
+  containerDiv.id = "container-ddd8901a15325649dd1789c1832d6fac";
+
+  if (adContainer.value) {
+    adContainer.value.innerHTML = "";
+    adContainer.value.appendChild(containerDiv);
+
+    adScript = document.createElement("script");
+    adScript.async = true;
+    adScript.setAttribute("data-cfasync", "false");
+    adScript.src =
+      "//pl26656223.profitableratecpm.com/ddd8901a15325649dd1789c1832d6fac/invoke.js";
+
+    document.head.appendChild(adScript);
+  }
+};
+
+onMounted(() => {
+  titleInterval = setInterval(changeTitle, 2000);
+  loadAdsterra();
+});
+
+onUnmounted(() => {
+  // Nettoyage de l'intervalle
+  if (titleInterval) {
+    clearInterval(titleInterval);
+  }
+
+  // Nettoyage du script AdSterra si nécessaire
+  if (adScript && adScript.parentNode) {
+    adScript.parentNode.removeChild(adScript);
+  }
+});
 
 onMounted(() => {
   setInterval(changeTitle, 2000);
