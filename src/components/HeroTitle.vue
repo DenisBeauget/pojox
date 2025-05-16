@@ -97,36 +97,19 @@ const changeTitle = () => {
   currentTitle.value = titles[currentIndex.value];
 };
 
-const loadAdsterra = () => {
-  try {
-    const containerDiv = document.createElement("div");
-    containerDiv.id = "container-ddd8901a15325649dd1789c1832d6fac";
-
-    if (adContainerRef.value) {
-      adContainerRef.value.innerHTML = "";
-      adContainerRef.value.appendChild(containerDiv);
-
-      if (!adScript) {
-        adScript = document.createElement("script");
-        adScript.async = true;
-        adScript.setAttribute("data-cfasync", "false");
-        adScript.src =
-          "https://pl26656223.profitableratecpm.com/ddd8901a15325649dd1789c1832d6fac/invoke.js";
-
-        adScript.onerror = (error) => {
-          console.error("Erreur lors du chargement du script Adsterra:", error);
-        };
-        document.head.appendChild(adScript);
-      }
-    }
-  } catch (error) {
-    console.error("Erreur lors du chargement d'Adsterra:", error);
-  }
-};
-
 onMounted(() => {
   titleInterval = window.setInterval(changeTitle, 2000);
-  setTimeout(loadAdsterra, 1000);
+  const adScript = document.createElement("script");
+  adScript.async = true;
+  adScript.setAttribute("data-cfasync", "false");
+  adScript.src =
+    "https://pl26656223.profitableratecpm.com/ddd8901a15325649dd1789c1832d6fac/invoke.js";
+
+  adScript.onerror = () => {
+    console.error("Erreur lors du chargement du script Adsterra.");
+  };
+
+  document.body.appendChild(adScript);
 });
 
 onUnmounted(() => {
