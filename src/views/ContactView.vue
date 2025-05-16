@@ -267,8 +267,6 @@ const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 const YOUR_EMAIL = import.meta.env.VITE_EMAIL;
 
-console.log(import.meta.env.VITE_EMAILJS_SERVICE_ID);
-
 const form = ref<HTMLElement>();
 
 const formData = reactive({
