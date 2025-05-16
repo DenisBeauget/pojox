@@ -111,7 +111,7 @@ const loadAdsterra = () => {
         adScript.async = true;
         adScript.setAttribute("data-cfasync", "false");
         adScript.src =
-          "//pl26656223.profitableratecpm.com/ddd8901a15325649dd1789c1832d6fac/invoke.js";
+          "https://pl26656223.profitableratecpm.com/ddd8901a15325649dd1789c1832d6fac/invoke.js";
 
         adScript.onerror = (error) => {
           console.error("Erreur lors du chargement du script Adsterra:", error);
