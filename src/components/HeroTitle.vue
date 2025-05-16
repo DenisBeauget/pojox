@@ -67,11 +67,12 @@
         </div>
       </div>
     </div>
+    <div ref="adContainerRef" class="ad-container mt-12 w-full"></div>
   </section>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 
 const titles: string[] = [
   "Java",
@@ -87,12 +88,39 @@ const titles: string[] = [
 const currentIndex = ref(0);
 const currentTitle = ref(titles[currentIndex.value]);
 
+const adContainerRef = ref<HTMLDivElement | null>(null);
+let adScript: HTMLScriptElement | null = null;
+let titleInterval: number | null = null;
+
 const changeTitle = () => {
   currentIndex.value = (currentIndex.value + 1) % titles.length;
   currentTitle.value = titles[currentIndex.value];
 };
 
 onMounted(() => {
-  setInterval(changeTitle, 2000);
+  titleInterval = window.setInterval(changeTitle, 2000);
+  const adScript = document.createElement("script");
+  adScript.async = true;
+  adScript.setAttribute("data-cfasync", "false");
+  adScript.src =
+    "https://pl26656223.profitableratecpm.com/ddd8901a15325649dd1789c1832d6fac/invoke.js";
+
+  adScript.onerror = () => {
+    console.error("Erreur lors du chargement du script Adsterra.");
+  };
+
+  document.body.appendChild(adScript);
+});
+
+onUnmounted(() => {
+  if (titleInterval !== null) {
+    clearInterval(titleInterval);
+    titleInterval = null;
+  }
+
+  if (adScript && adScript.parentNode) {
+    adScript.parentNode.removeChild(adScript);
+    adScript = null;
+  }
 });
 </script>

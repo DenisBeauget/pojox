@@ -122,7 +122,44 @@
         </div>
       </div>
     </div>
+    <div class="flex justify-center mt-12">
+      <div
+        ref="adContainer"
+        id="ad-container"
+        class="w-[300px] h-[250px]"
+      ></div>
+    </div>
   </section>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { onMounted, ref } from "vue";
+
+const adContainer = ref<HTMLDivElement | null>(null);
+
+onMounted(() => {
+  const adConfigScript = document.createElement("script");
+  adConfigScript.type = "text/javascript";
+  adConfigScript.innerHTML = `
+    atOptions = {
+      'key' : 'c78bb0c24589525bd8e4bc4a5f0c5d0f',
+      'format' : 'iframe',
+      'height' : 250,
+      'width' : 300,
+      'params' : {}
+    };
+  `;
+
+  const adScript = document.createElement("script");
+  adScript.type = "text/javascript";
+  adScript.src =
+    "https://www.highperformanceformat.com/c78bb0c24589525bd8e4bc4a5f0c5d0f/invoke.js";
+  adScript.async = true;
+
+  if (adContainer.value) {
+    adContainer.value.innerHTML = "";
+    adContainer.value.appendChild(adConfigScript);
+    adContainer.value.appendChild(adScript);
+  }
+});
+</script>
