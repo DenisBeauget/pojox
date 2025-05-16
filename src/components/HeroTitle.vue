@@ -99,16 +99,12 @@ const changeTitle = () => {
 
 const loadAdsterra = () => {
   try {
-
     const containerDiv = document.createElement("div");
     containerDiv.id = "container-ddd8901a15325649dd1789c1832d6fac";
 
-
     if (adContainerRef.value) {
-
       adContainerRef.value.innerHTML = "";
       adContainerRef.value.appendChild(containerDiv);
-
 
       if (!adScript) {
         adScript = document.createElement("script");
@@ -116,7 +112,6 @@ const loadAdsterra = () => {
         adScript.setAttribute("data-cfasync", "false");
         adScript.src =
           "//pl26656223.profitableratecpm.com/ddd8901a15325649dd1789c1832d6fac/invoke.js";
-
 
         adScript.onerror = (error) => {
           console.error("Erreur lors du chargement du script Adsterra:", error);
@@ -145,3 +140,4 @@ onUnmounted(() => {
     adScript = null;
   }
 });
+</script>
