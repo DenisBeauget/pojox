@@ -67,7 +67,7 @@
         </div>
       </div>
     </div>
-    <div ref="adContainer" class="ad-container mt-12 w-full"></div>
+    <div ref="adContainerRef" class="ad-container mt-12 w-full"></div>
   </section>
 </template>
 
@@ -88,10 +88,9 @@ const titles: string[] = [
 const currentIndex = ref(0);
 const currentTitle = ref(titles[currentIndex.value]);
 
-const adContainer = ref<HTMLDivElement | null>(null);
+const adContainerRef = ref<HTMLDivElement | null>(null);
 let adScript: HTMLScriptElement | null = null;
-
-let titleInterval: number | null | undefined = null;
+let titleInterval: number | null = null;
 
 const changeTitle = () => {
   currentIndex.value = (currentIndex.value + 1) % titles.length;
@@ -99,41 +98,50 @@ const changeTitle = () => {
 };
 
 const loadAdsterra = () => {
-  const containerDiv = document.createElement("div");
-  containerDiv.id = "container-ddd8901a15325649dd1789c1832d6fac";
+  try {
 
-  if (adContainer.value) {
-    adContainer.value.innerHTML = "";
-    adContainer.value.appendChild(containerDiv);
+    const containerDiv = document.createElement("div");
+    containerDiv.id = "container-ddd8901a15325649dd1789c1832d6fac";
 
-    adScript = document.createElement("script");
-    adScript.async = true;
-    adScript.setAttribute("data-cfasync", "false");
-    adScript.src =
-      "//pl26656223.profitableratecpm.com/ddd8901a15325649dd1789c1832d6fac/invoke.js";
 
-    document.head.appendChild(adScript);
+    if (adContainerRef.value) {
+
+      adContainerRef.value.innerHTML = "";
+      adContainerRef.value.appendChild(containerDiv);
+
+
+      if (!adScript) {
+        adScript = document.createElement("script");
+        adScript.async = true;
+        adScript.setAttribute("data-cfasync", "false");
+        adScript.src =
+          "//pl26656223.profitableratecpm.com/ddd8901a15325649dd1789c1832d6fac/invoke.js";
+
+
+        adScript.onerror = (error) => {
+          console.error("Erreur lors du chargement du script Adsterra:", error);
+        };
+        document.head.appendChild(adScript);
+      }
+    }
+  } catch (error) {
+    console.error("Erreur lors du chargement d'Adsterra:", error);
   }
 };
 
 onMounted(() => {
-  titleInterval = setInterval(changeTitle, 2000);
-  loadAdsterra();
+  titleInterval = window.setInterval(changeTitle, 2000);
+  setTimeout(loadAdsterra, 1000);
 });
 
 onUnmounted(() => {
-  // Nettoyage de l'intervalle
-  if (titleInterval) {
+  if (titleInterval !== null) {
     clearInterval(titleInterval);
+    titleInterval = null;
   }
 
-  // Nettoyage du script AdSterra si nécessaire
   if (adScript && adScript.parentNode) {
     adScript.parentNode.removeChild(adScript);
+    adScript = null;
   }
 });
-
-onMounted(() => {
-  setInterval(changeTitle, 2000);
-});
-</script>
