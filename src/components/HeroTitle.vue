@@ -66,8 +66,8 @@
           </div>
         </div>
       </div>
+      <div ref="adContainer" class="ad-container mt-12 w-full"></div>
     </div>
-    <div ref="adContainerRef" class="ad-container mt-12 w-full"></div>
   </section>
 </template>
 
@@ -88,8 +88,7 @@ const titles: string[] = [
 const currentIndex = ref(0);
 const currentTitle = ref(titles[currentIndex.value]);
 
-const adContainerRef = ref<HTMLDivElement | null>(null);
-let adScript: HTMLScriptElement | null = null;
+const adContainer = ref<HTMLDivElement | null>(null);
 let titleInterval: number | null = null;
 
 const changeTitle = () => {
@@ -101,26 +100,35 @@ onMounted(() => {
   titleInterval = window.setInterval(changeTitle, 2000);
   const adScript = document.createElement("script");
   adScript.async = true;
-  adScript.setAttribute("data-cfasync", "false");
   adScript.src =
-    "https://pl26656223.profitableratecpm.com/ddd8901a15325649dd1789c1832d6fac/invoke.js";
+    "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7226901984485283";
+  adScript.crossOrigin = "anonymous";
 
-  adScript.onerror = () => {
-    console.error("Erreur lors du chargement du script Adsterra.");
-  };
+  const adBanner = document.createElement("ins");
+  adBanner.className = "adsbygoogle";
+  adBanner.style.display = "block";
+  adBanner.setAttribute("data-ad-client", "ca-pub-7226901984485283");
+  adBanner.setAttribute("data-ad-slot", "1164138315");
+  adBanner.setAttribute("data-ad-format", "auto");
+  adBanner.setAttribute("data-full-width-responsive", "true");
 
-  document.body.appendChild(adScript);
+  const adScriptPush = document.createElement("script");
+  adScriptPush.innerHTML = "(adsbygoogle = window.adsbygoogle || []).push({});";
+
+  console.log(adContainer.value);
+
+  if (adContainer.value) {
+    adContainer.value.innerHTML = "";
+    adContainer.value.appendChild(adBanner);
+    adContainer.value.appendChild(adScript);
+    adContainer.value.appendChild(adScriptPush);
+  }
 });
 
 onUnmounted(() => {
   if (titleInterval !== null) {
     clearInterval(titleInterval);
     titleInterval = null;
-  }
-
-  if (adScript && adScript.parentNode) {
-    adScript.parentNode.removeChild(adScript);
-    adScript = null;
   }
 });
 </script>
