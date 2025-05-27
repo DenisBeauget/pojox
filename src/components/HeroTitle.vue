@@ -66,7 +66,6 @@
           </div>
         </div>
       </div>
-      <div ref="adContainer" class="ad-container mt-12 w-full"></div>
     </div>
   </section>
 </template>
